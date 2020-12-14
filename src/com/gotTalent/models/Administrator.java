@@ -1,5 +1,7 @@
 package com.gotTalent.models;
 
+import java.util.ArrayList;
+
 public class Administrator extends User {
 	
 	private String password;
@@ -23,6 +25,16 @@ public class Administrator extends User {
 	public String toString() {
 		return "Administrator [password=" + password + ", toString()=" + super.toString() + "]";
 	}
+	
+	public ArrayList<User> findAllUsers(){}
+	
+	public void adminConnect(){}
+	
+	public ArrayList<Participation> findParticipations(){}
+	
+	public Participation findParticipationByEmail(){}
+	
+	public void validateParticipation(){}
 
 	
 	

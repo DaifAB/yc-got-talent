@@ -90,6 +90,8 @@ public class Participation {
 				+ attached_file + ", is_accepted=" + is_accepted + "]";
 	}
 	
+	public void addParticipation() {}
+	
 	
 	
 	
