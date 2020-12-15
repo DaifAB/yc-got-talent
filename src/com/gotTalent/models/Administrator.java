@@ -26,15 +26,15 @@ public class Administrator extends User {
 		return "Administrator [password=" + password + ", toString()=" + super.toString() + "]";
 	}
 	
-	public ArrayList<User> findAllUsers(){}
-	
-	public void adminConnect(){}
-	
-	public ArrayList<Participation> findParticipations(){}
-	
-	public Participation findParticipationByEmail(){}
-	
-	public void validateParticipation(){}
+//	public ArrayList<User> findAllUsers(){}
+//	
+//	public void adminConnect(){}
+//	
+//	public ArrayList<Participation> findParticipations(){}
+//	
+//	public Participation findParticipationByEmail(){}
+//	
+//	public void validateParticipation(){}
 
 	
 	

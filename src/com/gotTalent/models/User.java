@@ -1,5 +1,6 @@
 package com.gotTalent.models;
 
+
 public class User {
 	
 	private long id;
@@ -56,11 +57,6 @@ public class User {
 				+ "]";
 	}
 	
-	public void addUser() {}
-	
-	public User findUser() {}
-	
-	public void updateUser() {}
 	
 	
 	
