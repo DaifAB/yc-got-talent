@@ -91,7 +91,7 @@ public class ParticipationController {
         		
         		
         
-        		System.out.println("Enter the start time of your show: (yyy-mmm-dd h:m:s)");
+        		System.out.println("Enter the start time of your show: (yyyy-mm-dd hh:mm:ss)");
         		String startTime = scanner.nextLine();
         		Timestamp startTimestamp = null;
         		//Check time format
@@ -102,7 +102,7 @@ public class ParticipationController {
         			addParticipation();
         		}
         		
-        		System.out.println("Enter the end time of your show: (yyy-mmm-dd h:m:s)");
+        		System.out.println("Enter the end time of your show: (yyyy-mm-dd hh:mm:ss)");
         		String endTime = scanner.nextLine();
         		Timestamp endTimestamp = null;
         		//still 
