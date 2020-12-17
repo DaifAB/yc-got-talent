@@ -68,13 +68,13 @@ public class Menu {
 		        			System.out.println(user.findUserById().toString()); 
 		        			break;
 		        		case 3 : 
-		        			System.out.println("Case 3 Medicament");
+		        			System.out.println(admin.getParticipations());
 		        			break;
 		        		case 4 : 
-		        			System.out.println("Case 4 Medicament");
+		        			System.out.println(admin.getParticipationByEmail().toString());
 		        			break;
 		        		case 5 : 
-		        			System.out.println("Case 5 Medicament");
+		        			admin.validateParticipation();
 		        			break;
 		        		case 6 : 
 		        			admin.adminDisconnected();

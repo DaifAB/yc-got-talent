@@ -17,12 +17,8 @@ public class Main {
 		
 		menu.menuList();
 		
-		//2020-12-30 13:00:00
-		//473204232
 		
-		
-		
-		
+
 		
 
 	}
