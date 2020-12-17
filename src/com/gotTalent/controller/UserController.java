@@ -9,6 +9,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 import com.gotTalent.config.Config;
+import com.gotTalent.enums.EnumConfig;
+import com.gotTalent.enums.EnumMessage;
 import com.gotTalent.models.User;
 
 public class UserController {
@@ -21,10 +23,11 @@ public class UserController {
 	
 	public UserController() throws ClassNotFoundException, SQLException {
 		
-		config = new Config("jdbc:mysql://localhost/youcode_tallent","Sketch","abdel996");
+		config = new Config(EnumConfig.DBURL.getLabel(),EnumConfig.DBUSERNAME.getLabel(),EnumConfig.DBPASSWORD.getLabel());
 		scanner = new Scanner(System.in);
 		connection = config.connect();
 		user  = new User();
+		
 	}
 	
 	//phone number regex
@@ -45,7 +48,7 @@ public class UserController {
 		  String fname = scanner.nextLine();
 		  //Validating first name
 		  if(fname.length() < 3) {
-			  System.out.println("First name is too short");
+			  System.out.println(EnumMessage.FNAMEVALID.getLabel());
 			  addUser();
 		  }
 		  
@@ -53,7 +56,7 @@ public class UserController {
 		  String lname = scanner.nextLine();
 		  //Validating last name
 		  if(lname.length() < 3) {
-			  System.out.println("Last name is too short");
+			  System.out.println(EnumMessage.LNAMEVALID.getLabel());
 			  addUser();
 		  }
 		  
@@ -63,7 +66,7 @@ public class UserController {
           if(email.matches(emilRegex)) {
         	  //correct email format
           }else {
-        	  System.out.println("email format is not correct");
+        	  System.out.println(EnumMessage.EMAILVALID.getLabel());
         	  addUser();
           }
 		  
@@ -73,7 +76,7 @@ public class UserController {
           if(phone.matches(phoneRegex)) {
         	  //correct email format
           }else {
-        	  System.out.println("phone format is not correct");
+        	  System.out.println(EnumMessage.PHONEVALID.getLabel());
         	  addUser();
           }
 		 
@@ -86,7 +89,7 @@ public class UserController {
 			statement.setString(5, phone );
 			statement.executeUpdate();
 		 
-		System.out.println("Your inscription is done successfully, This is your id   : "+ id + " ,saved it");
+		System.out.println(EnumMessage.SIGNUP.getLabel()+id);
 	}
 	
 	
@@ -112,7 +115,7 @@ public class UserController {
 				
 		}
 		else {
-			System.out.println("user not found");
+			System.out.println(EnumMessage.USERNOTFOUND.getLabel());
 			findUserById();
 		}
 		
@@ -131,7 +134,7 @@ public class UserController {
 		  if(idstr.matches(rgexNum)) {
 			   id = Long.parseLong(idstr);
 		  }else {
-               System.out.println("only degit number (9 degit)");
+               System.out.println(EnumMessage.ONLYDEGITID.getLabel());
 		  }
 		 
 		  
@@ -147,7 +150,7 @@ public class UserController {
 			  String fname = scanner.nextLine();
 			  //Validating first name
 			  if(fname.length() < 3) {
-				  System.out.println("First name is too short");
+				  System.out.println(EnumMessage.FNAMEVALID.getLabel());
 				  updateUser();
 			  }
 			  
@@ -155,7 +158,7 @@ public class UserController {
 			  String lname = scanner.nextLine();
 			  //Validating last name
 			  if(lname.length() < 3) {
-				  System.out.println("Last name is too short");
+				  System.out.println(EnumMessage.LNAMEVALID.getLabel());
 				  updateUser();
 			  }
 			  
@@ -165,17 +168,17 @@ public class UserController {
 	          if(email.matches(emilRegex)) {
 	        	  //correct email format
 	          }else {
-	        	  System.out.println("email format is not correct");
+	        	  System.out.println(EnumMessage.EMAILVALID.getLabel());
 	        	  updateUser();
 	          }
 			  
 			  System.out.println("Enter your phone number:");
 			  String phone = scanner.nextLine();
-			  //Validating email
+			 
 	          if(phone.matches(phoneRegex)) {
-	        	  //correct email format
+	        	 
 	          }else {
-	        	  System.out.println("phone format is not correct");
+	        	  System.out.println(EnumMessage.PHONEVALID.getLabel());
 	        	  updateUser();
 	          }
 	          
@@ -188,10 +191,10 @@ public class UserController {
 				statement.setLong(5, id);
 				statement.executeUpdate();
 			 
-			System.out.println("Your informations are successfully updated");
+			System.out.println(EnumMessage.UPDATE.getLabel());
 		
 	      }else {
-	    	  System.out.println("user not found , please register");
+	    	  System.out.printf(EnumMessage.USERNOTFOUND.getLabel(),EnumMessage.REGISTER.getLabel());
 	    	  updateUser();
 	      }
 	}

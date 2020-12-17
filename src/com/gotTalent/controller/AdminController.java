@@ -17,6 +17,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.gotTalent.config.Config;
+import com.gotTalent.enums.EnumConfig;
+import com.gotTalent.enums.EnumMail;
+import com.gotTalent.enums.EnumMessage;
 import com.gotTalent.models.Administrator;
 import com.gotTalent.models.Participation;
 import com.gotTalent.models.User;
@@ -31,7 +34,7 @@ public class AdminController {
 	public AdminController() throws ClassNotFoundException, SQLException {
 
 
-		config = new Config("jdbc:mysql://localhost/youcode_tallent", "Sketch", "abdel996");
+		config = new Config(EnumConfig.DBURL.getLabel(),EnumConfig.DBUSERNAME.getLabel(),EnumConfig.DBPASSWORD.getLabel());
 		scanner = new Scanner(System.in);
 		connection = config.connect();
 	}
@@ -112,9 +115,7 @@ public class AdminController {
 
 		}
 
-//		for (Participation list : participationList) {
-//			System.out.println(list.toString());
-//		}
+
 
 		return participationList;
 	}
@@ -132,7 +133,7 @@ public class AdminController {
 		statement.setString(1, email);
 		ResultSet resultSet = statement.executeQuery();
 
-		while (resultSet.next()) {
+		if(resultSet.next()) {
 		
 			participation.setId_user(resultSet.getLong("user_id"));
 			participation.setId_category(resultSet.getLong("id_category"));
@@ -142,7 +143,10 @@ public class AdminController {
 			participation.setAttached_file(resultSet.getString("attached_file"));
 			participation.setIs_accepted(resultSet.getBoolean("is_accepted"));
 
-		}
+		}else {
+			System.out.println(EnumMessage.EMAILNOTFOUND.getLabel());
+			getParticipationByEmail();
+			}
 		return participation;
 		
 	}
@@ -176,12 +180,13 @@ public class AdminController {
     			sendMail(email);
     		}
      		//976211752
-            System.out.println("Participation Accepted");
+            System.out.println(EnumMessage.PARTACC.getLabel());
             
 		}else if(action == 0) {
 			
-			System.out.println("Participation Denied");
+			System.out.println(EnumMessage.PARTDENIED.getLabel());
 		}
+	
 		
 	
 		
@@ -192,17 +197,17 @@ public class AdminController {
 
         Properties properties = new Properties();
 
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
-        String myAccount = "projectmailtestyc@gmail.com";
-        String password = "youcode2020";
+        properties.put(EnumMail.MAILAUTH.getLabel(), EnumMail.MAILAUTH.getLabel1());
+        properties.put(EnumMail.MAILSTARTTLS.getLabel(), EnumMail.MAILSTARTTLS.getLabel1());
+        properties.put(EnumMail.MAILAUTH.getLabel(), EnumMail.MAILAUTH.getLabel1());
+        properties.put(EnumMail.MAILHOST.getLabel(), EnumMail.MAILHOST.getLabel1());
+        properties.put(EnumMail.MAILPORT.getLabel(), EnumMail.MAILPORT.getLabel1());
+        String myEmail = EnumMail.MAILADR.getLabel();
+        String password = EnumMail.MAILPSWRD.getLabel();
 
         Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(myAccount, password);
+                return new PasswordAuthentication(myEmail, password);
             }
         });
 
@@ -213,7 +218,7 @@ public class AdminController {
 
         try {
              MimeMessage message = new MimeMessage(session);
-             message.setFrom(new InternetAddress(myAccount));
+             message.setFrom(new InternetAddress(myEmail));
              message.addRecipient(Message.RecipientType.TO,new InternetAddress(recEmail));
              message.setSubject("YouCode Got Talent");
              message.setText("Congratulations ! Your participation to Youcode Got Talent has been accepted!");
@@ -221,7 +226,7 @@ public class AdminController {
             //send the message
              Transport.send(message);
 
-             System.out.println("Message sent successfully...");
+             System.out.println(EnumMessage.EMAILSENT.getLabel());
 
              } catch (MessagingException e) {e.printStackTrace();}
          }

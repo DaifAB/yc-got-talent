@@ -6,6 +6,8 @@ import java.util.Scanner;
 import com.gotTalent.controller.AdminController;
 import com.gotTalent.controller.ParticipationController;
 import com.gotTalent.controller.UserController;
+import com.gotTalent.enums.EnumAdmin;
+import com.gotTalent.enums.EnumMessage;
 
 public class Menu {
 
@@ -48,8 +50,8 @@ public class Menu {
 			        
 			        case 2: 
 			        	boolean a = true;
-			        	String adminEmail = "ahmed.mahmoud.admin@gmail.com";
-			        	String adminPswrd = "0000";
+			        	String adminEmail = EnumAdmin.ADMINEMAIL.getLabel();
+			        	String adminPswrd = EnumAdmin.ADMINPSWRD.getLabel();
 			        
 			        	System.out.println("Email :");
 			        	String email = input.next();
@@ -86,7 +88,7 @@ public class Menu {
 			        	}
 			        	}
 			        	else {
-			        		System.out.println("Wrong Cridentials !"); 
+			        		System.out.println(EnumMessage.WRONGCRID.getLabel()); 
 			        		}
 			        	
 			        	
