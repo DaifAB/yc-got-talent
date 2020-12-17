@@ -21,12 +21,13 @@ public class AdminController {
 	
 	public AdminController() throws ClassNotFoundException, SQLException {
 		
-		config = new Config("jdbc:mysql://localhost/youcode_tallent","Sketch","abdel996");
+		config = new Config("jdbc:mysql://localhost/youcode_tallent","root","");
 		scanner = new Scanner(System.in);
 		connection = config.connect();
 	}
 	
 	
+	//Displaying all users
 	public  ArrayList<User> getUsers() throws SQLException, ClassNotFoundException {
 		
 		//declaring the array list
@@ -51,16 +52,18 @@ public class AdminController {
 		
 	}
 
+	
+	//changing the status of admin to connected
 	public void adminConnected() throws SQLException {
-	
-	
-	
+		
 	String sqlString = "Update admin_session SET  is_connected=true WHERE id_admin=15970010";
 	PreparedStatement statement = connection.prepareStatement(sqlString);
 	statement.executeUpdate();
 	System.out.println("Admin Logged in succesfully");
 }
 
+	
+	//changing the status of admin to disconnected
 	public void adminDisconnected() throws SQLException {
 	
 	String sqlString = "Update admin_session SET  is_connected=false WHERE id_admin=15970010";
@@ -69,20 +72,17 @@ public class AdminController {
 	System.out.println("Admin Logged out succesfully");
 }
 
+	
+	
 	public boolean isLoggedin() throws SQLException {
 	String sqlString = "SELECT * FROM admin_session";
 	PreparedStatement statement = connection.prepareStatement(sqlString);
 	ResultSet resultSet = statement.executeQuery();
 	return resultSet.getBoolean("is_connected");
 	
-}c
+}
 	
-	public  ArrayList<particiation> getParticiation(){
-		
-		ArrayList<particiation> particiationList = new ArrayList<>();
-		
-		
-	}
+	
 
 
 

@@ -1,12 +1,6 @@
 package com.gotTalent.app;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import com.gotTalent.controller.AdminController;
-import com.gotTalent.controller.ParticipationController;
-import com.gotTalent.controller.UserController;
-import com.gotTalent.models.User;
 import com.gotTalent.vues.Menu;
 
 public class Main {
@@ -17,13 +11,9 @@ public class Main {
 		
 		menu.menuList();
 		
-		//2020-12-30 13:00:00
-		//473204232
-		
-		
-		
-		
-		
+		// ahmed.mahmoud.admin@gmail.com
+		// 2020-12-30 13:00:00
+		// 830488396
 
 	}
 
