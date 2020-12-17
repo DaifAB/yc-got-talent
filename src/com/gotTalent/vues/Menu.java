@@ -11,6 +11,7 @@ public class Menu {
 
 		public void menuList() throws ClassNotFoundException, SQLException{
 				
+				@SuppressWarnings("resource")
 				Scanner input = new Scanner(System.in);
 				UserController user = new UserController();
 				AdminController admin = new AdminController();
@@ -100,6 +101,7 @@ public class Menu {
 			public static int userMenu() {
 
 				//int listSelec;
+				@SuppressWarnings("resource")
 				Scanner liSele = new Scanner(System.in);
 
 				System.out.println("Choose an action:");
@@ -116,6 +118,7 @@ public class Menu {
 			public static int adminMenu() {
 				
 				
+				@SuppressWarnings("resource")
 				Scanner liSele = new Scanner(System.in);
 				
 				System.out.println("Choose an action:");

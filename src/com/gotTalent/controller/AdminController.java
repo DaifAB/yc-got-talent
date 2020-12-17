@@ -30,6 +30,7 @@ public class AdminController {
 
 	public AdminController() throws ClassNotFoundException, SQLException {
 
+
 		config = new Config("jdbc:mysql://localhost/youcode_tallent", "Sketch", "abdel996");
 		scanner = new Scanner(System.in);
 		connection = config.connect();
@@ -38,6 +39,7 @@ public class AdminController {
 	public ArrayList<User> getUsers() throws SQLException, ClassNotFoundException {
 
 		// declaring the array list
+
 		ArrayList<User> usersList = new ArrayList<>();
 
 		String sqlString = "SELECT * FROM users";
@@ -60,14 +62,20 @@ public class AdminController {
 
 	}
 
+
+	
+	//changing the status of admin to connected
 	public void adminConnected() throws SQLException {
+		
+	String sqlString = "Update admin_session SET  is_connected=true WHERE id_admin=15970010";
+	PreparedStatement statement = connection.prepareStatement(sqlString);
+	statement.executeUpdate();
+	System.out.println("Admin Logged in succesfully");
+}
 
-		String sqlString = "Update admin_session SET  is_connected=true WHERE id_admin=15970010";
-		PreparedStatement statement = connection.prepareStatement(sqlString);
-		statement.executeUpdate();
-		System.out.println("Admin Logged in succesfully");
-	}
 
+	
+	//changing the status of admin to disconnected
 	public void adminDisconnected() throws SQLException {
 
 		String sqlString = "Update admin_session SET  is_connected=false WHERE id_admin=15970010";
@@ -76,6 +84,8 @@ public class AdminController {
 		System.out.println("Admin Logged out succesfully");
 	}
 
+	
+	
 	public boolean isLoggedin() throws SQLException {
 		String sqlString = "SELECT * FROM admin_session";
 		PreparedStatement statement = connection.prepareStatement(sqlString);
@@ -109,6 +119,7 @@ public class AdminController {
 		return participationList;
 	}
 	
+
 	public Participation getParticipationByEmail() throws SQLException {
 
 		Participation participation  = new Participation();
@@ -194,6 +205,11 @@ public class AdminController {
                 return new PasswordAuthentication(myAccount, password);
             }
         });
+
+
+	
+	
+
 
         try {
              MimeMessage message = new MimeMessage(session);

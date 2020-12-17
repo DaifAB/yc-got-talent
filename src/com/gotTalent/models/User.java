@@ -53,10 +53,12 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", phone=" + phone
-				+ "]";
-	}
-	
+			
+			return "User [id=" + id + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", phone=" + phone
+					+ "]";
+		}
+		
+
 	
 	
 	
